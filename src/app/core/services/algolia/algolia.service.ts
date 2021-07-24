@@ -14,20 +14,31 @@ export class AlgoliaService {
   static ITEMS_INDEX: string = "items_index";
 
   private client;
+  private index;
 
   constructor() {
     this.client = algoliasearch(
       environment.algoliaConfig.appId,
       environment.algoliaConfig.apiKey
     );
+
+    this.index = this.client.initIndex(AlgoliaService.ITEMS_INDEX);
   }
 
   public createItemIndex(item: ItemModel) {
-    const index = this.client.initIndex(AlgoliaService.ITEMS_INDEX);
-    return index.saveObject(item);
+    return this.index.saveObject(item);
   }
 
-  public searchResearchGroup() {
-    const index = this.client.initIndex("Items");
+  public async searchItems(query: string) {
+    return this.index.search(query);
+  }
+
+  public getItems(query: string, page: number) {
+    return this.index.search(query,{
+      page: page,
+      // hitsPerPage: 2  
+    });
+
+    // return this.index.search(query);
   }
 }

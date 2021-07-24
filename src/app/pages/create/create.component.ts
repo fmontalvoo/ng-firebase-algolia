@@ -28,7 +28,6 @@ export class CreateComponent implements OnInit {
     this.fs.createItem(item)
       .then(doc => {
         item.objectID = doc.id;
-        console.log(item);
         console.log(`DocId: ${doc.id}`);
         this.as.createItemIndex(item)
         .then(index =>{

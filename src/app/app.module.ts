@@ -25,7 +25,6 @@ import { NavBarComponent } from './core/components/nav-bar/nav-bar.component';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule.enablePersistence(),
-    
   ],
   providers: [],
   bootstrap: [AppComponent]
